@@ -1,0 +1,60 @@
+# Laravel & Framework files
+/vendor
+/node_modules
+/public/storage
+/storage/*.key
+/storage/debugbar/*
+/storage/logs
+/storage/framework/cache/data
+/storage/framework/sessions
+/storage/framework/views
+/.env
+/.env.*
+/.phpunit.result.cache
+
+# Laravel-specific IDE helpers and build files
+/.idea
+/.vscode
+/.phpstorm.meta.php
+/.project
+/.composer
+
+# NPM / Yarn related
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Laravel Mix generated files
+/public/hot
+/public/mix-manifest.json
+
+# Cache and session files
+/.cache
+/.pids
+/.env.local
+/.env.production
+/.env.development
+/.env.testing
+
+# Jetstream / Breeze / Passport / Sanctum configurations
+/public/vendor
+/public/build
+
+# Composer PHAR
+composer.phar
+
+# Ignore any sensitive or application-specific files
+**/.env.local
+**/.env.testing
+**/.env.production
+
+# Mac OS specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
+
+# IDE configurations
+.vscode/
+.idea/
