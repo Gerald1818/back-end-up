@@ -1,9 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
+
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+
 
 class ProductController extends Controller
 {
@@ -18,6 +19,7 @@ class ProductController extends Controller
     {
         $validatedData = $request->validate([
             'barcode' => 'required|integer|unique:products,barcode',
+            'product_name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|integer',
             'available_quantity' => 'required|integer',
@@ -45,23 +47,24 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
-
+    
         if (!$product) {
             return response()->json(['message' => 'Product not found'], 404);
         }
-
+    
         $validatedData = $request->validate([
             'barcode' => 'integer|unique:products,barcode,' . $product->id,
+            'product_name' => 'string|max:255', 
             'description' => 'string',
             'price' => 'integer',
             'available_quantity' => 'integer',
-            'category' => 'string',
         ]);
-
+    
         $product->update($validatedData);
-
+    
         return response()->json(['message' => 'Product updated successfully', 'product' => $product]);
     }
+    
 
 
     public function destroy($id)

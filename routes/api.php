@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
 
 
 
@@ -24,4 +26,19 @@ Route::apiResource('products', \App\Http\Controllers\ProductController::class);
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
-Route::get('/barcodes', [\App\Http\Controllers\ProductController::class, 'getAllBarcodes']);
+
+Route::post('/users/register', [UserController::class, 'register']);
+
+
+
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/cart', [CartController::class, 'index']);
+    Route::post('/cart', [CartController::class, 'store']);
+    Route::put('/cart/{cartId}/update', [CartController::class, 'updateQuantity']);
+    Route::delete('/cart/{id}', [CartController::class, 'destroy']);
+    Route::delete('/cart-clear', [CartController::class, 'clear']);
+});
+
+
